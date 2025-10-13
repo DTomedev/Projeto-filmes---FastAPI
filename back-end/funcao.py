@@ -88,4 +88,3 @@ def deletar_filme(id_filme):
             cursor.close()
             conexao.close()
 
-deletar_filme(3)
