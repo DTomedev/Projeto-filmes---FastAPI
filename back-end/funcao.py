@@ -47,8 +47,8 @@ def listar_filme():
             cursor.execute(
             "SELECT * FROM filmes ORDER BY ID",
             )
-            for linha in cursor.fetchall():
-                print(f"ID {linha[0]} | NOME: {linha[1]} | IDADE: {linha[2]} | CURSO: {linha[3]}")
+            return cursor.fetchall()
+            
         except Exception as erro:
             print(f"Erro ao tentar listar filmes: {erro}")
         finally:
