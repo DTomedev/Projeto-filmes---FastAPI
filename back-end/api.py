@@ -13,12 +13,12 @@ app = FastAPI(title="Gerenciador de Filmes")
 
 # GET = Pegar / Listar
 # POST = Criar / Enviar 
-# PUT = Atualiar
+# PUT = Atualizar
 # DELETE = Deletar
 
 @app.get("/")
 def home():
-    return {"mensagem": "Quero chocolate"}
+    return {"mensagem": "Bem-Vindo ao Gerenciador de Filmes"}
 
 @app.post("/filmes")
 def criar_filmes(titulo: str, genero: str, ano: int, avaliacao: float):
@@ -39,3 +39,10 @@ def exibir_filmes():
             })
         
     return {"filmes": lista}
+
+
+# @app.put("/filmes")
+# def update_filmes():
+#     (id: int, titulo: str, genero: str, ano: int, avaliacao: float):
+#     atualizar_filme(titulo, genero, ano, avaliacao)
+#     return { "mensagem": "Filme atualizado com sucesso!"}
