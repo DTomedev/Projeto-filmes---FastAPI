@@ -8,7 +8,7 @@ st.set_page_config(page_title="Gerenciador de Filmes",page_icon="🎬")
 st.title("Gerenciador de Filmes 🎬")
 
 #Menu laterak
-menu = st.sidebar.radio("Navegação", ["Catálogo", "Adicionar Filme"])
+menu = st.sidebar.radio("Navegação", ["Catálogo", "Adicionar Filme", "Atualizar Filmes", "Deletar"])
 
 if menu == "Catálogo":
     st.subheader("Todos os Filmes Disponíveis")
@@ -36,3 +36,6 @@ elif menu == "Adicionar Filme":
         else:
              st.error("Erro ao adicionar o filme")
 
+elif menu == "Atualizar Filmes":
+    st.subheader("Atualizar Filmes")
+    

@@ -56,13 +56,13 @@ def listar_filme():
             conexao.close()
 
 
-def atualizar_filme(id_filme, nova_atualizacao):
+def atualizar_filme(id_filme, novo_titulo, novo_genero, nova_avaliacao):
     conexao, cursor = conectar()
     if conexao:
         try:
             cursor.execute(
-            "UPDATE filmes SET avaliacao = %s WHERE Id = %s",
-            (nova_atualizacao, id_filme)
+            "UPDATE filmes SET avaliacao = %s WHERE Id = %s SET titulo = %s SET genero = %s",
+            (nova_avaliacao, novo_titulo, novo_genero, id_filme)
             )
             conexao.commit()
         except Exception as erro:
@@ -88,3 +88,17 @@ def deletar_filme(id_filme):
             cursor.close()
             conexao.close()
 
+def buscar_filme(id_filme):
+    conexao, cursor = conectar()
+    if conexao:
+        try:
+            cursor.execute(
+            "SELECT * FROM filmes WHERE id = %s", (id_filme,)
+            )
+            return cursor.fetchall()
+            
+        except Exception as erro:
+            print(f"Erro ao tentar buscar filmes: {erro}")
+        finally:
+            cursor.close()
+            conexao.close()

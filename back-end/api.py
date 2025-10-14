@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from funcao import listar_filme, atualizar_filme, deletar_filme, inserir_filme
+from funcao import listar_filme, atualizar_filme, deletar_filme, inserir_filme, buscar_filme
 
 #Rodar o fastapi
 # python -m uvicorn api:app --reload
@@ -41,8 +41,13 @@ def exibir_filmes():
     return {"filmes": lista}
 
 
-# @app.put("/filmes")
-# def update_filmes():
-#     (id: int, titulo: str, genero: str, ano: int, avaliacao: float):
-#     atualizar_filme(titulo, genero, ano, avaliacao)
-#     return { "mensagem": "Filme atualizado com sucesso!"}
+@app.put("/filmes/{id_filme}")
+def update_filmes(id_filme: int, novo_titulo: str, novo_genero: str, nova_avaliacao: float):
+    atualizar_filme(id_filme, novo_titulo, novo_genero, nova_avaliacao)
+    filme = buscar_filme(id_filme)
+    if filme:
+        atualizar_filme(id_filme, novo_titulo, novo_genero, nova_avaliacao)
+        return { "mensagem": "Filme atualizado com sucesso!"}
+    else:
+        return { "erro": "FIlme não encontrado"}
+
